@@ -10,33 +10,84 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AirRouteImport } from './routes/air'
+import { Route as CarbonRouteImport } from './routes/carbon'
+import { Route as EcologyRouteImport } from './routes/ecology'
+import { Route as PollutionRouteImport } from './routes/pollution'
+import { Route as WaterRouteImport } from './routes/water'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AirRoute = AirRouteImport.update({
+  id: '/air',
+  path: '/air',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CarbonRoute = CarbonRouteImport.update({
+  id: '/carbon',
+  path: '/carbon',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EcologyRoute = EcologyRouteImport.update({
+  id: '/ecology',
+  path: '/ecology',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PollutionRoute = PollutionRouteImport.update({
+  id: '/pollution',
+  path: '/pollution',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WaterRoute = WaterRouteImport.update({
+  id: '/water',
+  path: '/water',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/air': typeof AirRoute
+  '/carbon': typeof CarbonRoute
+  '/ecology': typeof EcologyRoute
+  '/pollution': typeof PollutionRoute
+  '/water': typeof WaterRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/air': typeof AirRoute
+  '/carbon': typeof CarbonRoute
+  '/ecology': typeof EcologyRoute
+  '/pollution': typeof PollutionRoute
+  '/water': typeof WaterRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/air': typeof AirRoute
+  '/carbon': typeof CarbonRoute
+  '/ecology': typeof EcologyRoute
+  '/pollution': typeof PollutionRoute
+  '/water': typeof WaterRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/air' | '/carbon' | '/ecology' | '/pollution' | '/water'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/air' | '/carbon' | '/ecology' | '/pollution' | '/water'
+  id:
+    '__root__' | '/' | '/air' | '/carbon' | '/ecology' | '/pollution' | '/water'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AirRoute: typeof AirRoute
+  CarbonRoute: typeof CarbonRoute
+  EcologyRoute: typeof EcologyRoute
+  PollutionRoute: typeof PollutionRoute
+  WaterRoute: typeof WaterRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +99,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/air': {
+      id: '/air'
+      path: '/air'
+      fullPath: '/air'
+      preLoaderRoute: typeof AirRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/carbon': {
+      id: '/carbon'
+      path: '/carbon'
+      fullPath: '/carbon'
+      preLoaderRoute: typeof CarbonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ecology': {
+      id: '/ecology'
+      path: '/ecology'
+      fullPath: '/ecology'
+      preLoaderRoute: typeof EcologyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pollution': {
+      id: '/pollution'
+      path: '/pollution'
+      fullPath: '/pollution'
+      preLoaderRoute: typeof PollutionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/water': {
+      id: '/water'
+      path: '/water'
+      fullPath: '/water'
+      preLoaderRoute: typeof WaterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AirRoute: AirRoute,
+  CarbonRoute: CarbonRoute,
+  EcologyRoute: EcologyRoute,
+  PollutionRoute: PollutionRoute,
+  WaterRoute: WaterRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
